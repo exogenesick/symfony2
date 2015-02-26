@@ -6,12 +6,14 @@ RUN apt-get update && apt-get install -y \
   wget \
   curl \
   vim \
+  git \
   nginx \
   telnet \
   htop \
   php5-curl \
   php5-cli \
-  php5-fpm
+  php5-fpm \
+  php5-mongo
 
 # Virtual host configuration
 ADD symfony-vhost.conf /etc/nginx/sites-enabled/default
