@@ -20,6 +20,9 @@ RUN apt-get update && apt-get install -y \
 # Virtual host configuration
 ADD symfony-vhost.conf /etc/nginx/sites-enabled/default
 
+# Change php.ini
+RUN echo "xdebug.max_nesting_level = 500" >> /etc/php5/cli/php.ini
+
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
