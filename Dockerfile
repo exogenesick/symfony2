@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y \
   php5-curl \
   php5-cli \
   php5-fpm \
-  php5-mongo
+  php5-mongo \
+  php5-xdebug \
+  nodejs \
 
 # Virtual host configuration
 ADD symfony-vhost.conf /etc/nginx/sites-enabled/default
