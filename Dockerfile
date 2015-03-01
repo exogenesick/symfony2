@@ -14,8 +14,7 @@ RUN apt-get update && apt-get install -y \
   php5-cli \
   php5-fpm \
   php5-mongo \
-  php5-xdebug \
-  node
+  php5-xdebug
 
 # Virtual host configuration
 ADD symfony-vhost.conf /etc/nginx/sites-enabled/default
@@ -25,6 +24,14 @@ RUN echo "xdebug.max_nesting_level = 500" >> /etc/php5/cli/php.ini
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install node.js
+RUN cd /tmp \
+  && wget http://nodejs.org/dist/v0.12.0/node-v0.12.0-linux-x64.tar.gz \
+  && tar -xzf node-v0.12.0-linux-x64.tar.gz \
+  && mv node-v0.12.0-linux-x64 /node \
+  && cd /usr/local/bin \
+  && ln -s /node/bin/* .
 
 # Create user with sudo
 RUN adduser --disabled-password --gecos '' symfony \
